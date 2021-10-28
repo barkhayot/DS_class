@@ -24,6 +24,37 @@ NODE* CreateTree(NODE *left, char item, NODE *right)
 
   return newNodePtr;
 }
+
+// PreOrder function NLR
+
+void preOrder(NODE* root){
+    if(root != NULL){
+      printf("%c", root->data);
+      preOrder(root->left);
+      preOrder(root->right);
+    }
+}
+
+// InOrder function
+
+void InOrder(NODE* root){
+    if(root != NULL){
+      InOrder(root->left);
+      printf("%c", root->data);
+      InOrder(root->right);
+    }
+}
+
+// PostOrder function
+
+void PostOrder(NODE* root){
+    if(root != NULL){
+      PostOrder(root->left);
+      PostOrder(root->right);
+      printf("%c", root->data);
+    }
+}
+
 // main function
 
 int main(){
@@ -41,11 +72,29 @@ int main(){
   NODE *root = CreateTree(multiply, '+', d);
 
   // testing 
-  printf("%c\n", root->data);
-  printf("%c\n", root->left->data);
-  printf("%c\n", root->right->data);
-  printf("%c\n", root->left->left->data);
-  printf("%c\n", root->left->right->left->data);
+  //printf("%c\n", root->data);
+  //printf("%c\n", root->left->data);
+  //printf("%c\n", root->right->data);
+  //printf("%c\n", root->left->left->data);
+  //printf("%c\n", root->left->right->left->data);
+
+  // testing for preOrder
+  printf("PreOrder : ");
+  preOrder(root);
+  printf("\n");
+  
+    // testing for InOrder
+  printf("InOrder : ");
+  InOrder(root);
+  printf("\n");
+  
+
+    // testing for PostOrder
+  printf("PostOrder : ");
+  PostOrder(root);
+  printf("\n");
+  
+  
 
 
 
@@ -55,3 +104,4 @@ int main(){
 
   return 0;
 }
+
