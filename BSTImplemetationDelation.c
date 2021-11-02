@@ -10,6 +10,8 @@ typedef struct bstnode{
   struct bstnode * right;
 } BSTNODE;
 
+// Create functin for BSTnode
+
 BSTNODE* createBStNode(int data){
   // allocate the space 
   BSTNODE* newBSTNode = (BSTNODE*)malloc(sizeof(BSTNODE));
@@ -25,6 +27,7 @@ BSTNODE* createBStNode(int data){
   //
 }
 
+// Insertion of Trees
 
 BSTNODE* insertBSTNode(BSTNODE* root, int data){
   // base case
@@ -47,6 +50,8 @@ BSTNODE* insertBSTNode(BSTNODE* root, int data){
 
 }
 
+// Ordering Trees by Inorder Traversal
+
 void InOrder(BSTNODE* root){
     if(root != NULL){
       InOrder(root->left);
@@ -54,6 +59,9 @@ void InOrder(BSTNODE* root){
       InOrder(root->right);
     }
 }
+
+
+// Search Function 
 
 BSTNODE* searchBST(BSTNODE* root, int key){
   if(root == NULL){
@@ -69,6 +77,9 @@ BSTNODE* searchBST(BSTNODE* root, int key){
     return root;
 }
 
+
+// Function to Delete the node
+
 BSTNODE* deleteBST(BSTNODE* root, int data){
   // base case 
   if(root == NULL){
@@ -80,7 +91,7 @@ BSTNODE* deleteBST(BSTNODE* root, int data){
     return root;
    
   }
-  else if(data < root->data) {
+  else if(data > root->data) {
     root->right = deleteBST(root->right, data);
     return root;
 
@@ -117,9 +128,10 @@ BSTNODE* deleteBST(BSTNODE* root, int data){
     while(maxNode->right != NULL){
       maxNode = maxNode->right;
     }
-  root->data = maxNode->data;
-  root->left = deleteBST(root->left, maxNode->data);
-  return root;
+    root->data = maxNode->data;
+    root->left = deleteBST(root->left, maxNode->data);
+    return root;
+    
   }
 
   // find the node to deleteBST
@@ -136,6 +148,7 @@ BSTNODE* deleteBST(BSTNODE* root, int data){
 
 }
 
+// Main fucntion
 
 int main(void) {
 // create simple BST for (int)
@@ -145,9 +158,13 @@ int main(void) {
 // add ndoes int BST
   myBST = insertBSTNode(myBST, 23);
   insertBSTNode(myBST, 18);
-  insertBSTNode(myBST, 15);
+  insertBSTNode(myBST, 20);
   insertBSTNode(myBST, 12);
   insertBSTNode(myBST, 44);
+  insertBSTNode(myBST, 35);
+  insertBSTNode(myBST, 56);
+
+
 
 //printf("Trees are :\n");
 //InOrder(myBST);
@@ -166,11 +183,11 @@ int main(void) {
   }
   
 
-  //printf("Trees are :\n");
-  //InOrder(myBST);
+  printf("Trees are :\n");
+  InOrder(myBST);
 
   // deletion of Leaf
-  deleteBST(myBST, 18);
+  deleteBST(myBST, 44);
   printf("Trees are :\n");
   InOrder(myBST);
 
