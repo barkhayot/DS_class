@@ -118,7 +118,7 @@ BSTNODE* deleteBST(BSTNODE* root, int data){
       maxNode = maxNode->right;
     }
   root->data = maxNode->data;
-  deleteBST(root->left, maxNode->data);
+  root->left = deleteBST(root->left, maxNode->data);
   return root;
   }
 
